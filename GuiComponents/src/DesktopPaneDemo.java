@@ -21,8 +21,8 @@ public class DesktopPaneDemo {
 		JFrame f = new JFrame("Title Here");
 		f.setSize(500, 500);
 		f.setLocationRelativeTo(null);
+		//f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		// add menu bar here
 		JMenuBar mb = new JMenuBar();
 		// add menu here
