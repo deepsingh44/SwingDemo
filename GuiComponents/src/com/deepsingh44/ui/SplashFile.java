@@ -68,6 +68,7 @@ public class SplashFile extends JFrame {
 		}
 
 		if (pb.getValue() == 100) {
+			new LoginFile().setVisible(true);
 			dispose();
 		}
 
