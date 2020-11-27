@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 public class Utility {
+	public static final String [] CATEGORY= {"Category", "Food", "Policy/Bill", "Shopping", "Others"};
+	
 public static ImageIcon resize(ImageIcon icon,int w,int h) {
 	BufferedImage bi=new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
 	Graphics2D gd=(Graphics2D)bi.createGraphics();
