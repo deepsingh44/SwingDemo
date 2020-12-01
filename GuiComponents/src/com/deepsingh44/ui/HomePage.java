@@ -18,7 +18,10 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -76,6 +79,7 @@ public class HomePage extends JFrame {
 		mnFile.add(mntmAddExpense);
 
 		JMenuItem mntmUpdateExpense = new JMenuItem("Update Expense");
+
 		mntmUpdateExpense.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK));
 		mnFile.add(mntmUpdateExpense);
 
@@ -89,16 +93,18 @@ public class HomePage extends JFrame {
 		mnView.add(mntmProfile);
 
 		JMenuItem mntmLiastOfExpense = new JMenuItem("List of Expense");
+		
 		mntmLiastOfExpense.setIcon(new ImageIcon(HomePage.class.getResource("/com/deepsingh44/images/expenses.png")));
 		mntmLiastOfExpense.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
 		mnView.add(mntmLiastOfExpense);
-		
+
 		JMenuItem mntmSearchExpense = new JMenuItem("Search Expense");
-		
-		mntmSearchExpense.setIcon(new ImageIcon(HomePage.class.getResource("/com/deepsingh44/images/expenses_add.png")));
+
+		mntmSearchExpense
+				.setIcon(new ImageIcon(HomePage.class.getResource("/com/deepsingh44/images/expenses_add.png")));
 		mntmSearchExpense.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		mnView.add(mntmSearchExpense);
-		
+
 		JMenu menu = new JMenu("");
 		menuBar.add(menu);
 		contentPane = new JPanel();
@@ -120,10 +126,12 @@ public class HomePage extends JFrame {
 
 		mntmProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ProfilePage profilePage = new ProfilePage();
+				desktopPane.add(profilePage);
+				profilePage.setVisible(true);
 			}
 		});
-		
+
 		mntmSearchExpense.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SearchExpense searchExpense = new SearchExpense();
@@ -132,6 +140,23 @@ public class HomePage extends JFrame {
 			}
 		});
 
+		mntmUpdateExpense.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateExpense updateExpense = new UpdateExpense();
+				desktopPane.add(updateExpense);
+				updateExpense.setVisible(true);
+			}
+		});
+
+		mntmLiastOfExpense.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			/*JDialog jd=new JDialog();
+			jd.setSize(300, 300);
+			jd.setLocationRelativeTo(HomePage.this);
+			jd.setVisible(true);*/
+			}
+		});
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
