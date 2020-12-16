@@ -35,17 +35,19 @@ public class AddExpense extends JInternalFrame {
 		setBounds(50, 15, 570, 408);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(51, 102, 102));
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(51, 0, 51));
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		panel_1.setBounds(30, 33, 214, 317);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(51, 102, 102));
+		panel_2.setBackground(new Color(51, 0, 51));
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		panel_2.setBounds(266, 33, 258, 317);
 		panel.add(panel_2);
@@ -97,7 +99,7 @@ public class AddExpense extends JInternalFrame {
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
 		datePicker.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		datePicker.setBounds(10, 221, 236, 27);
+		datePicker.setBounds(10, 221, 236, 28);
 		panel_2.add(datePicker);
 		
 		JLabel lblProductCategory = new JLabel("Product Category");

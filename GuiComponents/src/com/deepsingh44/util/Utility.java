@@ -28,6 +28,7 @@ private static String emailPattern="^[a-zA-Z0-9]{1,20}@[a-zA-Z]{1,10}.[a-zA-Z]{2
 public static boolean emailValidation(String email) {
 	return Pattern.compile(emailPattern).matcher(email).matches();	
 }
+
 private static String passwordPattern="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!?&()@$%#]).{6,15})";
 public static boolean passwordValidation(String pass) {
 	return Pattern.compile(passwordPattern).matcher(pass).matches();
@@ -36,5 +37,14 @@ public static boolean passwordValidation(String pass) {
 public static void warningMessage(Component cmp,String msg) {
 	JOptionPane.showMessageDialog(cmp, msg,"Warning-Message",JOptionPane.WARNING_MESSAGE);
 }
+
+public static void errorMessage(Component cmp,String msg) {
+	JOptionPane.showMessageDialog(cmp, msg,"Error-Message",JOptionPane.ERROR_MESSAGE);
+}
+
+public static void normalMessage(Component cmp,String msg) {
+	JOptionPane.showMessageDialog(cmp, msg);
+}
+
 
 }

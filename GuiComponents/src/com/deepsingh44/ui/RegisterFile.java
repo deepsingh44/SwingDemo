@@ -17,6 +17,9 @@ import java.awt.Cursor;
 
 import javax.swing.border.LineBorder;
 
+import com.deepsingh44.dao.Dao;
+import com.deepsingh44.dao.UserDao;
+import com.deepsingh44.model.User;
 import com.deepsingh44.util.Utility;
 
 import javax.swing.ImageIcon;
@@ -24,6 +27,7 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -33,26 +37,7 @@ public class RegisterFile extends JFrame {
 	private JTextField temail;
 	private JPasswordField tpass;
 	private JTextField tname;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegisterFile frame = new RegisterFile();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public RegisterFile() {
 
 		setResizable(false);
@@ -166,7 +151,14 @@ public class RegisterFile extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (valid()) {
-					System.out.println("Add data into databse...");
+					
+					int callback = UserDao.getUserDao().insert(new User(name, email, pass,"",""));
+					if (callback > 0) {
+						Utility.normalMessage(RegisterFile.this, "Registeration Successfully");
+					} else {
+						Utility.errorMessage(RegisterFile.this, "Registered Failed");
+					}
+
 				}
 			}
 		});
@@ -192,10 +184,12 @@ public class RegisterFile extends JFrame {
 		});
 	}
 
+	private String name, email, pass;
+
 	private boolean valid() {
-		String name = tname.getText();
-		String email = temail.getText();
-		String pass = String.valueOf(tpass.getPassword());
+		name = tname.getText();
+		email = temail.getText();
+		pass = String.valueOf(tpass.getPassword());
 
 		if (name.equals("")) {
 			Utility.warningMessage(RegisterFile.this, "please enter full name");

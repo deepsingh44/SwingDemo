@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
+import com.deepsingh44.dao.UserDao;
+import com.deepsingh44.model.User;
 import com.deepsingh44.util.Utility;
 
 import javax.swing.ImageIcon;
@@ -32,25 +34,6 @@ public class LoginFile extends JFrame {
 	private JTextField temail;
 	private JPasswordField tpass;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginFile frame = new LoginFile();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public LoginFile() {
 
 		setResizable(false);
@@ -152,7 +135,13 @@ public class LoginFile extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (valid()) {
-					System.out.println("Now you can store data in database...");
+					User user = UserDao.getUserDao().login(email, pass);
+					if(user!=null) {
+						new HomePage(user).setVisible(true);
+						dispose();
+					}else {
+						Utility.errorMessage(LoginFile.this, "Invalid email id or password");
+					}
 				}
 			}
 		});
@@ -166,9 +155,11 @@ public class LoginFile extends JFrame {
 		});
 	}
 
+	private String email, pass;
+
 	private boolean valid() {
-		String email = temail.getText();
-		String pass = String.valueOf(tpass.getPassword());
+		email = temail.getText();
+		pass = String.valueOf(tpass.getPassword());
 		if (email.equals("")) {
 			Utility.warningMessage(LoginFile.this, "please enter email id");
 			temail.requestFocus();

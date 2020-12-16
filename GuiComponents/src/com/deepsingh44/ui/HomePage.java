@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.deepsingh44.model.User;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -34,27 +37,10 @@ public class HomePage extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomePage frame = new HomePage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private User user;
 
-	/**
-	 * Create the frame.
-	 */
-
-	public HomePage() {
+	public HomePage(User user) {
+		this.user = user;
 		LookAndFeelInfo lf[] = UIManager.getInstalledLookAndFeels();
 		try {
 			UIManager.setLookAndFeel(lf[1].getClassName());
@@ -93,7 +79,7 @@ public class HomePage extends JFrame {
 		mnView.add(mntmProfile);
 
 		JMenuItem mntmLiastOfExpense = new JMenuItem("List of Expense");
-		
+
 		mntmLiastOfExpense.setIcon(new ImageIcon(HomePage.class.getResource("/com/deepsingh44/images/expenses.png")));
 		mntmLiastOfExpense.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
 		mnView.add(mntmLiastOfExpense);
@@ -126,7 +112,7 @@ public class HomePage extends JFrame {
 
 		mntmProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProfilePage profilePage = new ProfilePage();
+				ProfilePage profilePage = new ProfilePage(user);
 				desktopPane.add(profilePage);
 				profilePage.setVisible(true);
 			}
@@ -150,13 +136,13 @@ public class HomePage extends JFrame {
 
 		mntmLiastOfExpense.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*JDialog jd=new JDialog();
-			jd.setSize(300, 300);
-			jd.setLocationRelativeTo(HomePage.this);
-			jd.setVisible(true);*/
+				/*
+				 * JDialog jd=new JDialog(); jd.setSize(300, 300);
+				 * jd.setLocationRelativeTo(HomePage.this); jd.setVisible(true);
+				 */
 			}
 		});
-		
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
