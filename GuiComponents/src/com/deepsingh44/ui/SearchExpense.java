@@ -132,7 +132,7 @@ public class SearchExpense extends JInternalFrame {
 
 		btnMin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Utility.normalMessage(SearchExpense.this, String.valueOf(min));
 			}
 		});
@@ -158,10 +158,10 @@ public class SearchExpense extends JInternalFrame {
 			totalpriceofcurrenttabledata += p.getQuantity() * p.getPrice();
 			dt.addRow(new Object[] { p.getId(), p.getName(), p.getDate(), p.getPrice(), p.getQuantity() });
 			max = Math.max(max, p.getPrice());
-			min=max;
-			//min=Math.min(min, p.getPrice());
-			if(min<p.getPrice()) {
-				min=p.getPrice();
+			min = max;
+			// min=Math.min(min, p.getPrice());
+			if (min < p.getPrice()) {
+				min = p.getPrice();
 			}
 		}
 
