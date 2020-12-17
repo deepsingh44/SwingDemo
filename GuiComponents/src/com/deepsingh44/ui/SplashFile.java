@@ -61,7 +61,7 @@ public class SplashFile extends JFrame {
 		for (int i = 0; i <= 100; i++) {
 			pb.setValue(i);
 			try {
-				Thread.sleep(100);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				System.out.println(e);
 			}
